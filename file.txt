@@ -1,0 +1,38 @@
+1: if else condition laga ke element ko return kar sakte ho tum
+2: secondly api call ka ko value ke base pe call karke optional chaning ka use kar sakte hai 
+3: kal ka task simple dynamic routing karna hai 
+   aur values ko set karna hai 
+4: register form banana hai 
+/*----------------------------agar ye hota hai----------------------------------------*/
+
+5:student reset password
+6:student resume setting
+7:aur dusre photo
+/*------------------------------------------------------------------------*/
+   idea number do 
+   1:jo category send kara hai 
+/*------------------------------------------------------------------------**/
+ 
+resume vala part chalu 
+
+
+<List>
+{sideBarData.map((item,i)=>(
+ <Link key={i} style={{textDecoration:"none",color:"#212121",opacity:"0.7"}} href={`/auth/${item.name}`}>
+     <ListItemStyler onClick={()=>ApiCallHandler(item.name)} key={item.name} style={category === item.name ?{
+          backgroundColor:"#d3e3fd",
+          cursor:"pointer"
+      }:{}} >
+       <item.icon/>
+       <LinkHandler>{item.name}</ LinkHandler>
+     </ListItemStyler>
+ </Link>  
+))}
+</List>  
+
+const ApiCallHandler= async (item)=>{
+    const res = await instance.post(`/user/student/${item}`);
+    return res.data;
+  }
+
+  const {category}=router.query;
