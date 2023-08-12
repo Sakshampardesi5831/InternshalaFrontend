@@ -11,7 +11,9 @@ import { useRouter } from "next/router";
 const StudentResumeWrapper = styled(Box)({
   width: "100%",
   height: "calc(100vh - 80px)",
-  padding:"20px 25px"
+  padding:"0px 15px",
+  display:'flex',
+  gap:"10px"
 });
 
 /**---------------------------------------------------------------------------- */
