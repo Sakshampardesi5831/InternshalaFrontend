@@ -66,3 +66,11 @@ a {
  opacity: 0.9;
  
 }
+.customisethedate{
+  width: 22vw!important;
+  padding: 10px 15px;
+  border: 3px solid #e8e8e8;
+  font-size: 20px;
+  opacity: 0.5;
+  border-radius: 10px;
+}
