@@ -11,14 +11,14 @@
 # next.js
 /.next/
 /out/
-
+/package-lock.json
 # production
 /build
 
 # misc
 .DS_Store
 *.pem
-
+./file.txt
 # debug
 npm-debug.log*
 yarn-debug.log*

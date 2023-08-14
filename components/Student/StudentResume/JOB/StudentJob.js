@@ -151,6 +151,9 @@ const DialogWrapperSection1_DescriptionWrapper = styled(Box)({
   padding: "5px 10px",
   // border: "2px solid #000",
 });
+
+
+
 const StudentJob = () => {
   const router = useRouter();
   const [OpenJobForm, setOpenJobForm] = useState(false);
@@ -159,9 +162,9 @@ const StudentJob = () => {
   const [comapanyName,setCompanyName]=useState("");
   const [position,setPosition]=useState("");
   const [description,setDescription]=useState("");
-
+  const [refresh,setRefresh]=useState(false);
   const { student } = useSelector((state) => state.StudentReducer);
-
+  useEffect(()=>{},[refresh]);
   const handlerDateChange = (date) => {
     setStartDate(date);
   };
@@ -195,7 +198,7 @@ const StudentJob = () => {
       {/* <NoJobWrapper>
         <NoJob setOpenJobForm={setOpenJobForm} />
       </NoJobWrapper> */}
-       <ShowJobExperience/>
+       <ShowJobExperience  setOpenJobForm={setOpenJobForm} setRefresh={setRefresh}/>
       <Dialog open={OpenJobForm} PaperProps={{ sx: dialogStyler }}>
         <DialogWrapperForm>
           <DialogWrapperHeading>
