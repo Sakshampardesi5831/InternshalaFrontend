@@ -162,9 +162,7 @@ const StudentJob = () => {
   const [comapanyName,setCompanyName]=useState("");
   const [position,setPosition]=useState("");
   const [description,setDescription]=useState("");
-  const [refresh,setRefresh]=useState(false);
   const { student } = useSelector((state) => state.StudentReducer);
-  useEffect(()=>{},[refresh]);
   const handlerDateChange = (date) => {
     setStartDate(date);
   };
@@ -194,11 +192,12 @@ const StudentJob = () => {
   }
   return (
     <Fragment>
-      {/* {student.resume.jobs.length===0? <NoJob/> :"Some job is present"} */}
-      {/* <NoJobWrapper>
-        <NoJob setOpenJobForm={setOpenJobForm} />
-      </NoJobWrapper> */}
-       <ShowJobExperience  setOpenJobForm={setOpenJobForm} setRefresh={setRefresh}/>
+      {student.resume.jobs.length===0?
+         <NoJobWrapper>
+          <NoJob setOpenJobForm={setOpenJobForm} />
+         </NoJobWrapper>
+      : <ShowJobExperience  setOpenJobForm={setOpenJobForm}/>
+      }
       <Dialog open={OpenJobForm} PaperProps={{ sx: dialogStyler }}>
         <DialogWrapperForm>
           <DialogWrapperHeading>
