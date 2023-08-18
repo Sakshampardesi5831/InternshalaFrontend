@@ -192,7 +192,7 @@ const StudentJob = () => {
   }
   return (
     <Fragment>
-      {student.resume.jobs.length===0?
+      {student?.resume?.jobs.length===0?
          <NoJobWrapper>
           <NoJob setOpenJobForm={setOpenJobForm} />
          </NoJobWrapper>

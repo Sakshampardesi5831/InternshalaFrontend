@@ -4,6 +4,7 @@ import {} from "@mui/icons-material";
 import Image from "next/image";
 import Education from "./Education/Education";
 import StudentJob from "./JOB/StudentJob";
+import StudentInternship from "./Internship/StudentInternship";
 /**---------------------------------------------------------------------------- */
 const ProfileWrapper = styled(Box)({
   width: "75%",
@@ -201,7 +202,6 @@ const StudentResumeSection = ({ student }) => {
   setInternship(false);
   setAccomplishments(false);
  }
-
  const internshipHandler=()=>{
   setEduction(false);
   setProjects(false);
@@ -212,7 +212,6 @@ const StudentResumeSection = ({ student }) => {
   setInternship(true);
   setAccomplishments(false);
  } 
-
  const accomplishmentsHandler=()=>{
   setEduction(false);
   setProjects(false);
@@ -280,7 +279,7 @@ const StudentResumeSection = ({ student }) => {
          <StudentLinkDetails>
            {education?<Education/>:""}
            {jobs?<StudentJob/>:""}
-           {internship?"internship":""}
+           {internship?<StudentInternship/>:""}
            {courses?"courses":""}
            {skills?"skills":""}
            {responsiblity?"responsiblity":""}
