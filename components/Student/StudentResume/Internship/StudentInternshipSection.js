@@ -286,8 +286,8 @@ const StudentInternshipSection = ({setOpenInternship}) => {
   const [updatedComapnyName, setUpdatedCompanyName] = useState("");
   const [updatedDomain, setUpdatedDomain] = useState("");
   const [updatedDuration, setUpdatedDuration] = useState(0);
-  const [updatedStartDate, setUpdatedStartDate] = useState(new Date());
-  const [updatedEndDate, setUpdatedEndDate] = useState(new Date());
+  const [updatedStartDate, setUpdatedStartDate] = useState("");
+  const [updatedEndDate, setUpdatedEndDate] = useState("");
   const [updatedDescription, setUpdatedDescription] = useState("");
   const [EditOpenDialog,setEditOpenDialog]=useState(false);
   
@@ -334,8 +334,8 @@ const StudentInternshipSection = ({setOpenInternship}) => {
            setUpdatedDomain("");
            setUpdatedDuration(0);
            setUpdatedDescription("");
-           setUpdatedStartDate(new Date());
-           setUpdatedEndDate(new Date());
+           setUpdatedStartDate("");
+           setUpdatedEndDate("");
            setEditOpenDialog(false);
        } catch (error) {
          console.log(error);

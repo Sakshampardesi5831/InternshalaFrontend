@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import {DescriptionOutlined, EditOutlined,AddOutlined,WorkOutline,ExpandMoreOutlined,ExpandLessOutlined} from '@mui/icons-material'
 import {Box,Button,Typography,Dialog,styled,Accordion,AccordionDetails,AccordionSummary, InputBase} from '@mui/material'
 import {useSelector,useDispatch} from 'react-redux'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import instance from '@/axiosConfig';
+import { asyncCurrentStudent } from '@/store/Actions/StudentAction';
 /**------------------------------------------------------------------------ */
 const StudentJobExperienceWrapper=styled(Box)({
     width:"100%",
@@ -250,8 +251,10 @@ const JobDialogWrapper_StartEndWrapper=styled(Box)({
 });
 /**-----------------------------DIALOG END------------------------------------------ */
 const ShowJobExperience = ({setOpenJobForm}) => {
-   const [newSelectedStartDate,setNewSelectedStartDate]=useState(new Date());
-   const [newSelectedEndDate,setNewSelectedEndDate]=useState(new Date());
+   const dispatch=useDispatch();
+   const [newInternship,setNewInternship]=useState([]);
+   const [newSelectedStartDate,setNewSelectedStartDate]=useState("");
+   const [newSelectedEndDate,setNewSelectedEndDate]=useState("");
    const [updatedComapnyName,setUpdatedCompanyName]=useState("");
    const [updatedPosition,setUpdatedPosition]=useState("");
    const [updatedDescription,setUpdatedDescription]=useState("");
@@ -261,6 +264,8 @@ const ShowJobExperience = ({setOpenJobForm}) => {
     const SingleJobValue=(id,comapanyname,position,description,startdate,enddate)=>{
          const convertDate=Date.parse(startdate);
          const convertEndDate=Date.parse(enddate);
+         console.log(convertDate);
+         console.log(convertEndDate);
         setUpdatedId(id);
         setUpdatedCompanyName(comapanyname);
         setUpdatedPosition(position);
@@ -306,6 +311,9 @@ const ShowJobExperience = ({setOpenJobForm}) => {
           console.log(error);
         }
     }
+    useEffect(()=>{
+       setNewInternship(student);
+    },[student]);
   return (
      <Fragment>
          <StudentJobExperienceWrapper>
