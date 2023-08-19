@@ -5,6 +5,7 @@ import Image from "next/image";
 import Education from "./Education/Education";
 import StudentJob from "./JOB/StudentJob";
 import StudentInternship from "./Internship/StudentInternship";
+import StudentResponsibility from "./Responsibility/StudentResponsibilty";
 /**---------------------------------------------------------------------------- */
 const ProfileWrapper = styled(Box)({
   width: "75%",
@@ -282,7 +283,7 @@ const StudentResumeSection = ({ student }) => {
            {internship?<StudentInternship/>:""}
            {courses?"courses":""}
            {skills?"skills":""}
-           {responsiblity?"responsiblity":""}
+           {responsiblity?<StudentResponsibility/>:""}
            {accomplishments?"accomplishments":""}
            {projects ?"projects":""}
          </StudentLinkDetails>

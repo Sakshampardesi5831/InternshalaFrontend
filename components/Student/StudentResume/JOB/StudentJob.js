@@ -14,6 +14,7 @@ import {
   InputBase,
 } from "@mui/material";
 import ShowJobExperience from "./ShowJobExperience";
+import { asyncCurrentStudent } from "@/store/Actions/StudentAction";
 /**---------------------------------------------------------------------------- */
 const NoJobWrapper = styled(Box)({
   width: "100%",
@@ -163,6 +164,7 @@ const StudentJob = () => {
   const [position,setPosition]=useState("");
   const [description,setDescription]=useState("");
   const { student } = useSelector((state) => state.StudentReducer);
+  const dispatch=useDispatch();
   const handlerDateChange = (date) => {
     setStartDate(date);
   };
@@ -190,6 +192,9 @@ const StudentJob = () => {
       console.log(error);
     }
   }
+  useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+  },[])
   return (
     <Fragment>
       {student?.resume?.jobs.length===0?

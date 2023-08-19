@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import instance from "@/axiosConfig";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { asyncCurrentStudent } from "@/store/Actions/StudentAction";
 /***----------------------------------------------------------------------- */
 
 const InternshipWrapper = styled(Box)({
@@ -281,6 +282,7 @@ const EditContentInput=styled(InputBase)({
 
 /*-------------------------------------------------------------------------**/
 const StudentInternshipSection = ({setOpenInternship}) => {
+  const dispatch=useDispatch();
   const { student } = useSelector((state) => state.StudentReducer);
   const [updatedId, setUpdatedId] = useState("");
   const [updatedComapnyName, setUpdatedCompanyName] = useState("");
@@ -296,20 +298,18 @@ const StudentInternshipSection = ({setOpenInternship}) => {
     comapanyName,
     domain,
     duration,
-    startDate,
-    endDate,
     description
   ) => {
-    const convertStartDate = Date.parse(startDate);
-    const convertEndDate = Date.parse(endDate);
     setUpdatedId(id);
     setUpdatedCompanyName(comapanyName);
     setUpdatedDomain(domain);
     setUpdatedDuration(duration);
-    setUpdatedStartDate(convertStartDate);
-    setUpdatedEndDate(convertEndDate);
     setUpdatedDescription(description);
     setEditOpenDialog(true);
+    // setUpdatedEndDate(convertEndDate);
+    //setUpdatedStartDate(convertStartDate);
+    // const convertStartDate = Date.parse(startDate);
+    // const convertEndDate = Date.parse(endDate);
   };
   const handleStartDate=(date)=>{
      setUpdatedStartDate(date);
@@ -336,6 +336,7 @@ const StudentInternshipSection = ({setOpenInternship}) => {
            setUpdatedDescription("");
            setUpdatedStartDate("");
            setUpdatedEndDate("");
+           dispatch(asyncCurrentStudent());
            setEditOpenDialog(false);
        } catch (error) {
          console.log(error);
@@ -345,12 +346,15 @@ const StudentInternshipSection = ({setOpenInternship}) => {
         try {
           const {data} =await instance.post(`/resume/delete-intern/${updatedId}`);
           window.alert(`${data.message}`);
+          dispatch(asyncCurrentStudent());
           setEditOpenDialog(false);
         } catch (error) {
           console.log(error);
         }
   }
-
+  useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+  },[])
   return (
     <Fragment>
       <InternshipWrapper>
@@ -399,8 +403,6 @@ const StudentInternshipSection = ({setOpenInternship}) => {
                   dets.comapanyName,
                   dets.domain,
                   dets.duration,
-                  dets.internStart.substring(0, 10),
-                  dets.internEnd.substring(0, 10),
                   dets.description
                 )
               }

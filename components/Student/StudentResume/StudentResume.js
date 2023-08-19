@@ -27,7 +27,7 @@ const StudentResume = () => {
     if (!isAuthenticated) {
       router.push("/login");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated,student]);
   return (
     <Fragment>
       <StudentDashBoardNavbar student={student} />

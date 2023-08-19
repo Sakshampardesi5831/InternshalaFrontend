@@ -36,3 +36,40 @@ const ApiCallHandler= async (item)=>{
   }
 
   const {category}=router.query;
+
+
+//////////////////////////////////// DYNAMIC INPUT WITH USESTATE//////////////////////////////////////////////
+
+import { useState } from 'react';
+
+const DynamicInput = () => {
+  const [inputList, setInputList] = useState([]);
+
+  const handleAddInput = () => {
+    if (inputList.length < 2) {
+      setInputList([...inputList, '']);
+    }
+  };
+
+  const handleInputChange = (index, value) => {
+    const updatedInputs = [...inputList];
+    updatedInputs[index] = value;
+    setInputList(updatedInputs);
+  };
+
+  return (
+    <div>
+      <button onClick={handleAddInput}>Add Input</button>
+      {inputList.map((inputValue, index) => (
+        <input
+          key={index}
+          value={inputValue}
+          onChange={(e) => handleInputChange(index, e.target.value)}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default DynamicInput;
+//////////////////////////////////////////////////////////////////////////////////

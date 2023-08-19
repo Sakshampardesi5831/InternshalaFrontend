@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -9,11 +9,12 @@ import {
 } from "@mui/material";
 import { DescriptionOutlined } from "@mui/icons-material";
 import NoInternship from "./NoInternship";
-import { useSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import instance from "@/axiosConfig";
 import StudentInternshipSection from "./StudentInternshipSection";
+import { asyncCurrentStudent } from "@/store/Actions/StudentAction";
 /**------------------------------------------------------------------- */
 
 const NoInternshipWrapper = styled(Box)({
@@ -186,14 +187,15 @@ const DateWrapperTypo = styled(Typography)({
 
 /**---------------------------------------------------------------------- */
 const StudentInternship = () => {
+  const dispatch=useDispatch();
   const { student } = useSelector((state) => state.StudentReducer);
   const [openInternship, setOpenInternship] = useState(false);
   const [comapanyName, setCompanyName] = useState("");
   const [domain, setDomain] = useState("");
   const [duration, setDuration] = useState(0);
   const [description, setDescription] = useState("");
-  const [internStart, setInternStart] = useState(new Date());
-  const [internEnd, setInternEnd] = useState(new Date());
+  const [internStart, setInternStart] = useState("");
+  const [internEnd, setInternEnd] = useState("");
   const internStartHandler = (date) => {
     setInternStart(date);
   };
@@ -222,11 +224,17 @@ const StudentInternship = () => {
       setDomain("");
       setDuration(0);
       setDescription("");
+      setInternStart("");
+      setInternEnd("");
+      dispatch(asyncCurrentStudent());
       setOpenInternship(false);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+  },[])
   return (
     <Fragment>
       {student?.resume?.internships.length===0 ?<NoInternshipWrapper>
