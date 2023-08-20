@@ -6,6 +6,7 @@ import Education from "./Education/Education";
 import StudentJob from "./JOB/StudentJob";
 import StudentInternship from "./Internship/StudentInternship";
 import StudentResponsibility from "./Responsibility/StudentResponsibilty";
+import StudentCourses from "./Courses/StudentCourses";
 /**---------------------------------------------------------------------------- */
 const ProfileWrapper = styled(Box)({
   width: "75%",
@@ -281,7 +282,7 @@ const StudentResumeSection = ({ student }) => {
            {education?<Education/>:""}
            {jobs?<StudentJob/>:""}
            {internship?<StudentInternship/>:""}
-           {courses?"courses":""}
+           {courses?<StudentCourses/>:""}
            {skills?"skills":""}
            {responsiblity?<StudentResponsibility/>:""}
            {accomplishments?"accomplishments":""}

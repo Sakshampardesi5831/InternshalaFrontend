@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Box, Typography, Button, InputBase, styled } from "@mui/material";
 import {} from "@mui/icons-material";
 import instance from "@/axiosConfig";
+import {useDispatch,useSelector} from 'react-redux'
+import { asyncCurrentStudent } from "@/store/Actions/StudentAction";
 /**------------------------------------------------------------------------- */
 const CollegeFormWrapper = styled(Box)({
   width: "100%",
@@ -84,6 +86,7 @@ const CollegeForm2SaveButton = styled(Button)({
 
 /**-------------------------------------------------------------------------- */
 const CollegeForm = ({ setOpendialog }) => {
+  const dispatch=useDispatch();
   const [instituteName, setInstituteName] = useState("");
   const [specialization, setSpecialization] = useState("");
   const [passingYear, setPassingYear] = useState("");
@@ -116,8 +119,12 @@ const CollegeForm = ({ setOpendialog }) => {
     setPassingYear("");
     setField("");
     setGrade("");
+    dispatch(asyncCurrentStudent());
     setOpendialog(false);
   };
+  useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+  },[])
   return (
     <Fragment>
       <CollegeFormWrapper>

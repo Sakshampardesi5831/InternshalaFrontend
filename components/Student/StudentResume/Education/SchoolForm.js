@@ -2,6 +2,8 @@ import React, { Fragment,useState,useEffect } from 'react'
 import {Box,Typography,Button,InputBase,styled} from '@mui/material'
 import {} from '@mui/icons-material'
 import instance from '@/axiosConfig';
+import { asyncCurrentStudent } from '@/store/Actions/StudentAction';
+import {useDispatch,useSelector}  from 'react-redux'
 /**------------------------------------------------------------------------------ */
 
 const SchoolFormWrapper=styled(Box)({
@@ -89,11 +91,11 @@ const SchoolContentSection2SaveButton=styled(Button)({
 });
 /**------------------------------------------------------------------------------- */
 const SchoolForm = ({setOpendialog}) => {
+  const dispatch=useDispatch();
   const [instituteName, setInstituteName]=useState("");
   const [specialization,setSpecialization]=useState("");
   const [passingYear,setPassingYear]=useState("");
   const [grade,setGrade]=useState("");
-
   const AddEducation= async ()=>{
       if(instituteName === '' && specialization==="" && passingYear === '' && grade ===""){
           return;
@@ -116,7 +118,9 @@ const SchoolForm = ({setOpendialog}) => {
         console.log(error);
       }
   };
-
+   useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+   },[])
   return (
     <Fragment>
      <SchoolFormWrapper>

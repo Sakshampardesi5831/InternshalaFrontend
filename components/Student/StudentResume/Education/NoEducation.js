@@ -1,6 +1,8 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import {Box,Typography,Button,styled} from '@mui/material'
 import {DescriptionOutlined,AddOutlined} from '@mui/icons-material'
+import { asyncCurrentStudent } from '@/store/Actions/StudentAction'
+import {useDispatch,useSelector} from 'react-redux'
 const NoEducationContent=styled(Box)({
     width:"40%",
     height:"40vh",
@@ -38,10 +40,13 @@ const NoEducationButtonStyler=styled(Button)({
 })
 
 const NoEducation = ({setOpendialog,openDialog}) => {
-
+  const dispatch=useDispatch();
   const dialogOpenHandler=()=>{
      setOpendialog(true);
   }
+  useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+  },[])
   return (
     <Fragment>
       <NoEducationContent>

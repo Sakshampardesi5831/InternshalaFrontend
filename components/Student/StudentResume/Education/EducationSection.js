@@ -16,6 +16,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import instance from "@/axiosConfig";
 import { useRouter } from "next/router";
+import { asyncCurrentStudent } from "@/store/Actions/StudentAction";
 /***------------------------------------------------------------------------ */
 
 const EducationWrapperMainHeading = styled(Box)({
@@ -266,6 +267,7 @@ const EditWrapperSaveButton = styled(Button)({
 });
 /**------------------------------------------------------------------------- */
 const EducationSection = ({ setOpendialog }) => {
+  const dispatch=useDispatch();
   const { student } = useSelector((state) => state.StudentReducer);
   const [editOpenDialog, setEditOpenDialog] = useState(false);
   const [updatedata, setUpdateData] = useState("");
@@ -278,7 +280,6 @@ const EducationSection = ({ setOpendialog }) => {
   const DialogOpen = () => {
     setOpendialog(true);
   };
-  console.log(updatedata);
   //this logic is for returning the id in the same page in react
   const EditForm = (
     id,
@@ -323,6 +324,9 @@ const EducationSection = ({ setOpendialog }) => {
       console.log(error);
     }
   }
+  useEffect(()=>{
+    dispatch(asyncCurrentStudent());
+  },[])
   return (
     <Fragment>
       <EducationWrapperMainHeading>
