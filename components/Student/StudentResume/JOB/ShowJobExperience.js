@@ -335,7 +335,7 @@ const ShowJobExperience = ({ setOpenJobForm }) => {
       <StudentJobExperienceWrapper>
         <StudentJobExperienceWrapper_NavPart>
           <StudentJobExperienceWrapper_NavPart_Section1>
-            <DescriptionOutlined style={{ fontSize: "50px", opacity: "0.7" }} />
+          <DescriptionOutlined style={{ fontSize: "50px", opacity: "0.7" }} />
             <StudentJobExperienceWrapper_NavPart_ContentWrapper>
               <AddJobHeading>ADD JOB EXPERIENCE</AddJobHeading>
               <AddSubHeading>fill the details with description</AddSubHeading>
